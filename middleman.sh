@@ -1,0 +1,1 @@
+tail -F /var/log/gitlab/gitlab-rails/api_json.log | jq --unbuffered -r '. | .time + " " + "key_id=" + (.params[] | select(.key=="key_id") | .value) + " " + (.params[] | select(.key=="project") | .value) + " " + (.params[] | select(.key=="check_ip") | .value)' >> /tmp/events
